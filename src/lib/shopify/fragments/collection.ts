@@ -1,4 +1,4 @@
-import { seoFragment } from "./seo";
+import seoFragment  from "./seo";
 
 export const collectionFragment=/*Graphql */`
 fragment collection on Collection{

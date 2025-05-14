@@ -1,5 +1,5 @@
 import { imageFragment } from "./image";
-import { seoFragment } from "./seo";
+import seoFragment  from "./seo";
 
 export const productFragment= /* Graphql*/`
    fragment product on Product{

@@ -9,10 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@headlessui/react": "^2.2.1",
+    "@headlessui/react": "^2.2.3",
     "@heroicons/react": "^2.2.0",
     "clsx": "^2.1.1",
-    "next": "14.2.4",
+    "next": "^14.2.4",
     "react": "^18",
     "react-dom": "^18",
     "zod": "^3.24.2"
@@ -20,6 +20,7 @@
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/typography": "^0.5.16",
+    "@types/next": "^8.0.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
