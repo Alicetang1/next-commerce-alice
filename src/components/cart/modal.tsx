@@ -83,7 +83,7 @@ export default function CartModal() {
                 </button>
               </div>
 
-              {!cart || cart.lines.length === 0 ? (
+              {!cart || !cart.lines || cart.lines.length === 0 ? (
                 <div>
                   <ShoppingCartIcon className="h-16" />
                   <p className="mt-6 text-center text-2xl font-bold">

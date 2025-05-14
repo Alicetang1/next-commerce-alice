@@ -8,7 +8,7 @@ export const metadata = {
   description: "Search for products in the store.",
 };
 
-export default async function SearchPage({
+export default async function Page({
   searchParams,
 }: {
   searchParams?: { [key: string]: string | string[] | undefined };
@@ -18,13 +18,14 @@ export default async function SearchPage({
     sorting.find((item) => item.slug === sort) || defaultSort;
   const products = await getProducts({ sortKey, reverse, query: searchValue });
   const resultsText = products.length > 1 ? "results" : "result";
+
   return (
     <>
       {searchValue ? (
         <p className="mb-4">
           {products.length === 0
             ? "There are no products that match"
-            : `Showing ${products.length} ${resultsText} for `}
+            : `Showing ${products.length} ${resultsText} for`}
           <span>&quot;{searchValue}&quot;</span>
         </p>
       ) : null}
