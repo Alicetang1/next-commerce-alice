@@ -1,6 +1,8 @@
-import type { Config } from "tailwindcss";
+const plugin = require("tailwindcss/plugin");
 
-const config: Config = {
+/** @type {import('tailwindcss').config} */
+
+module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,13 +10,47 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      fontFamily: {
+        sans: ["var(--font-geist-sans)"],
+      },
+      keyframes: {
+        fadeIn: {
+          from: { opacity: 0 },
+          to: {
+            opacity: 1,
+          },
+        },
+      },
+      blink: {
+        "0%": { opacity: 0.2 },
+        "20%": { opacity: 1 },
+        "100%": { opacity: 0.2 },
+      },
+      animation: {
+        fadeIn: "fadeIn 0.3s ease-in-out",
+        blink: "blink 1.4s both infinite",
       },
     },
   },
-  plugins: [],
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/container-queries"),
+    plugin(({ matchUtilities, theme }) => {
+      matchUtilities(
+        {
+          "animation-delay": (value) => {
+            return {
+              "animation-delay": value,
+            };
+          },
+        },
+        {
+          values: theme("transitionDelay"),
+        }
+      );
+    }),
+  ],
 };
-export default config;
