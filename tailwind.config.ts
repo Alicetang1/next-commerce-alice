@@ -1,6 +1,4 @@
-const plugin = require("tailwindcss/plugin");
-
-/** @type {import('tailwindcss').config} */
+import plugin from 'tailwindcss/plugin';
 
 module.exports = {
   content: [
@@ -38,7 +36,7 @@ module.exports = {
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/container-queries"),
-    plugin(({ matchUtilities, theme }) => {
+    plugin(function({ matchUtilities, theme }) {
       matchUtilities(
         {
           "animation-delay": (value) => {

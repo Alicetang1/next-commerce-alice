@@ -1,11 +1,11 @@
 "use client";
-
-import { ListItem } from "./index";
 import { usePathname, useSearchParams } from "next/navigation";
+import { ListItem } from ".";
 import { useEffect, useRef, useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { FilterItem } from "./item";
-export default function FilterItemDropDown({ list }: { list: ListItem }) {
+
+export default function FilterItemDropDown({ list }: { list: ListItem[] }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [active, setActive] = useState("");
@@ -19,7 +19,9 @@ export default function FilterItemDropDown({ list }: { list: ListItem }) {
         setOpenSelect(false);
       }
     };
+
     window.addEventListener("click", handleClickOutside);
+
     return () => window.removeEventListener("click", handleClickOutside);
   }, []);
 
@@ -38,7 +40,7 @@ export default function FilterItemDropDown({ list }: { list: ListItem }) {
     <div className="relative" ref={ref}>
       <div
         onClick={() => setOpenSelect(!openSelect)}
-        className="flex w-full items-center justify-between rounded border border-black/30 px-4 py-2 text-sm dark:border-white"
+        className="flex w-full items-center justify-between rounded border border-black/30 px-4 py-2 text-sm dark:border-white/30"
       >
         {active}
         <ChevronDownIcon className="h-4" />
