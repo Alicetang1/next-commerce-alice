@@ -1,6 +1,6 @@
 import { Product } from "@/lib/shopify/types";
-import Link from "next/link";
 import Grid from "../grid";
+import Link from "next/link";
 import { GridTileImage } from "../grid/tile";
 
 export default function ProductGridItems({
@@ -14,7 +14,8 @@ export default function ProductGridItems({
         <Grid.Item key={product.handle} className="animate-fadeIn">
           <Link
             href={`/product/${product.handle}`}
-            className="relative inline-block h-full w-full prefetch={true}"
+            className="relative inline-block h-full w-full"
+            prefetch={true}
           >
             <GridTileImage
               alt={product.title}
@@ -25,7 +26,7 @@ export default function ProductGridItems({
               }}
               src={product.featuredImage?.url}
               fill
-              sizes="(min-width:768px) 33vw,(min-width:640px) 50vw,100vw"
+              sizes="(min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
             />
           </Link>
         </Grid.Item>

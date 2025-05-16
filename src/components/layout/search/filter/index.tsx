@@ -1,6 +1,6 @@
+import { SortFilterItem } from "@/lib/constants";
 import { FilterItem } from "./item";
 import FilterItemDropDown from "./dropdown";
-import { SortFilterItem } from "@/lib/constants";
 
 export type PathFilterItem = { title: string; path: string };
 export type ListItem = SortFilterItem | PathFilterItem;

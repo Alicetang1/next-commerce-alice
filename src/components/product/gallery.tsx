@@ -1,8 +1,9 @@
 "use client";
+
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 import { GridTileImage } from "../grid/tile";
 import { useProduct, useUpdateURL } from "./product-context";
-import Image from "next/image";
 
 export default function Gallery({
   images,
@@ -12,6 +13,7 @@ export default function Gallery({
   const { state, updateImage } = useProduct();
   const updateURL = useUpdateURL();
   const imageIndex = state.image ? parseInt(state.image) : 0;
+
   const nextImageIndex = imageIndex + 1 < images.length ? imageIndex + 1 : 0;
   const previousImageIndex =
     imageIndex === 0 ? images.length - 1 : imageIndex - 1;
@@ -26,12 +28,13 @@ export default function Gallery({
           <Image
             className="h-full w-full object-contain"
             fill
-            sizes="(min-width:1024px) 66vw,100vw"
+            sizes="(min-width: 1024px) 66vw, 100vw"
             src={images[imageIndex]?.src as string}
             alt={images[imageIndex]?.altText as string}
             priority={true}
           />
         )}
+
         {images.length > 1 ? (
           <div className="absolute bottom-[15%] flex w-full justify-center">
             <div className="mx-auto flex h-11 items-center rounded-full border border-white bg-neutral-50/80 text-neutral-500 backdrop-blur dark:border-black dark:bg-neutral-900/80">
@@ -48,10 +51,10 @@ export default function Gallery({
               <div className="mx-1 h-6 w-px bg-neutral-500"></div>
               <button
                 formAction={() => {
-                  const newState = updateImage(previousImageIndex.toString());
+                  const newState = updateImage(nextImageIndex.toString());
                   updateURL(newState);
                 }}
-                aria-label="Next Product image"
+                aria-label="Next product image"
                 className={buttonClassName}
               >
                 <ArrowRightIcon className="h-5" />
@@ -72,7 +75,7 @@ export default function Gallery({
                     updateURL(newState);
                   }}
                   aria-label="Select product image"
-                  className="h-full w-full "
+                  className="h-full w-full"
                 >
                   <GridTileImage
                     alt={image.altText}

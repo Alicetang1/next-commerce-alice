@@ -10,7 +10,6 @@ type CartContextType = {
   updateCartItem: (merchandiseId: string, updateType: UpdateType) => void;
   addCartItem: (variant: ProductVariant, product: Product) => void;
 };
-
 type CartAction =
   | {
       type: "UPDATE_ITEM";

@@ -1,62 +1,62 @@
-import { imageFragment } from "./image";
-import seoFragment  from "./seo";
+import imageFragment from "./image";
+import seoFragment from "./seo";
 
-export const productFragment= /* Graphql*/`
-   fragment product on Product{
+export const productFragment = /* GraphQl */ `
+    fragment product on Product {
     id
     handle
     availableForSale
     title
     description
     descriptionHtml
-    options{
+    options {
       id
       name
       values
     }
-    priceRange{
-      maxVariantPrice{
+    priceRange {
+      maxVariantPrice {
         amount
         currencyCode
       }
-      minVariantPrice{
+      minVariantPrice {
         amount
         currencyCode
       }
     }
-    variants(first:250){
-      edges{
-        node{
+    variants(first: 250) {
+      edges {
+        node {
           id
           title
           availableForSale
-          selectedOptions{
+          selectedOptions {
             name
             value
           }
-          price{
+          price {
             amount
             currencyCode
           }
         }
       }
     }
-    featuredImage{
+    featuredImage {
       ...image
     }
-    images(first:20){
-      edges{
-        node{
+    images(first: 20) {
+      edges {
+        node {
           ...image
         }
       }
     }
-    seo{
+    seo {
       ...seo
     }
     tags
     updatedAt
-   }
-   ${imageFragment}
-   ${seoFragment}
+    }
+    ${imageFragment}
+    ${seoFragment}
 `;

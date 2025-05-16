@@ -1,5 +1,5 @@
-import { FunctionComponent } from "react";
 import clsx from "clsx";
+import { FunctionComponent } from "react";
 
 interface TextProps {
   html: string;

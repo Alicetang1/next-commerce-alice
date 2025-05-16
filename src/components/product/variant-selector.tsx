@@ -47,10 +47,8 @@ export default function VariantSelector({
           {option.values.map((value) => {
             const optionNameLowerCase = option.name.toLowerCase();
 
-            // Base option params on current selectedOptions so we can preserve any other param state
             const optionParams = { ...state, [optionNameLowerCase]: value };
 
-            // Filter out invalid options and check if the options combination is available for sale
             const filtered = Object.entries(optionParams).filter(
               ([key, value]) =>
                 options.find(
@@ -67,7 +65,6 @@ export default function VariantSelector({
               )
             );
 
-            // The option is active if it's in the selected options
             const isActive = state[optionNameLowerCase] === value;
 
             return (

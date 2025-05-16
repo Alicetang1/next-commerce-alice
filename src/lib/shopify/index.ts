@@ -35,10 +35,10 @@ import {
   ShopifyCart,
   ShopifyCartOperation,
   ShopifyCollection,
-  ShopifyMenuOperation,
   ShopifyCollectionProductsOperation,
   ShopifyCollectionsOperation,
   ShopifyCreateCartOperation,
+  ShopifyMenuOperation,
   ShopifyPageOperation,
   ShopifyPagesOperation,
   ShopifyProduct,
@@ -348,7 +348,7 @@ export async function getCart(
     tags: [TAGS.cart],
   });
 
-
+  // old carts becomes 'null' when you checkout
   if (!res.body.data.cart) {
     return undefined;
   }
@@ -404,11 +404,7 @@ export async function addToCart(
   return reshapeCart(res.body.data.cartLinesAdd.cart);
 }
 
-// This is called from `app/api/revalidate.ts` so providers can control revalidation logic.
 export async function revalidate(req: NextRequest): Promise<NextResponse> {
-  // We always need to respond with a 200 status code to Shopify,
-  // otherwise it will continue to retry the request.
-
   const collectionWebhooks = [
     "collections/create",
     "collections/delete",
@@ -430,7 +426,6 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
   }
 
   if (!isCollectionUpdate && !isProductUpdate) {
-    // We don't need to revalidate anything for any other topics.
     return NextResponse.json({ status: 200 });
   }
 

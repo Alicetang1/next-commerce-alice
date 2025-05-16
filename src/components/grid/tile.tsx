@@ -1,6 +1,6 @@
-import Label from "../layout/label";
-import Image from "next/image";
 import clsx from "clsx";
+import Image from "next/image";
+import Label from "../label";
 
 export function GridTileImage({
   isInteractive = true,
@@ -22,6 +22,7 @@ export function GridTileImage({
       className={clsx(
         "group flex h-full w-full items-center justify-center overflow-hidden border bg-[rgb(235,235,235)] hover:border-blue-600 dark:bg-black",
         {
+          relative: label,
           "border-2 border-blue-600": active,
           "border-neutral-200 dark:border-neutral-800": !active,
         }
